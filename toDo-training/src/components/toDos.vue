@@ -42,7 +42,7 @@
               <button type="button" class="btn btn-success btn-sm" @click="doneAll()">Hoàn thành &#10004;</button>
             </div>
             <div class="form-check form-check-inline save-all">
-              <button type="button" class="btn btn-dark btn-sm">Xóa &#10006;</button>
+              <button type="button" class="btn btn-dark btn-sm" @click="deleteAll()">Xóa &#10006;</button>
             </div>
           </div>
         </div>
@@ -98,6 +98,7 @@ export default {
           'completed': false
         }
       )
+      this.textContent = ''
     },
     // Ham xoa task
     delTask: function (index) {
@@ -118,6 +119,15 @@ export default {
           if (item.checked) {
             item.completed = true
           }
+        })
+        this.checkAll()
+      }
+    },
+    // Ham xoa cac muc da chon
+    deleteAll: function () {
+      if (confirm('Bạn có chắc chắn muốn xóa các mục đã chọn ?')) {
+        this.todos = this.todos.filter(function (item) {
+          return !item.checked
         })
       }
     }
